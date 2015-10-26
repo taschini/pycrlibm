@@ -1,0 +1,44 @@
+branches:
+  except:
+    - doc
+
+environment:
+
+  matrix:
+
+    # Pre-installed Python versions, which Appveyor may upgrade to
+    # a later point release.
+    # See: http://www.appveyor.com/docs/installed-software#python
+
+    - PYTHON: "C:\\Python27"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "32"
+      PYTHON_DLL: "C:\\Windows\\SysWOW64\\python27.dll"
+      WITH_COMPILER: "PATH C:\\msys64\\MINGW32\\bin;C:\\msys64\\usr\\bin;%PATH% &"
+
+    - PYTHON: "C:\\Python27-x64"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "64"
+      PYTHON_DLL: "C:\\Windows\\System32\\python27.dll"
+      WITH_COMPILER: "PATH C:\\msys64\\MINGW64\\bin;C:\\msys64\\usr\\bin;%PATH% &"
+
+init:
+  - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
+
+install:
+  - "powershell appveyor\\install.ps1"
+  - "%WITH_COMPILER% .\\appveyor\\build.bat"
+
+build: off
+
+test_script:
+  - "%WITH_COMPILER% %PYTHON%/python setup.py build_ext -i -c msys2 test -q"
+
+after_test:
+  - "%WITH_COMPILER% %PYTHON%/python setup.py build_ext -c msys2 bdist_wheel"
+
+artifacts:
+  - path: dist\*
+
+#on_success:
+#  - TODO: upload the content of dist/*.whl to a public wheelhouse
