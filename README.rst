@@ -36,6 +36,89 @@ CRlibm is a free mathematical library (libm) which provides:
 * sufficiently efficient in average time, worst-case time, and
   memory consumption to replace existing libms transparently.
 
+Installation
+------------
+
+At the command line::
+
+    $ pip install crlibm
+
+Or, alternatively::
+
+    $ easy_install crlibm
+
+
+Usage
+-----
+
+In Python::
+
+    >>> import crlibm
+    >>> crlibm.exp_ru(1)
+    2.7182818284590455
+
+    >>> crlibm.exp_rd(1)
+    2.718281828459045
+
+Features
+--------
+
+* This project provides the bindings for the functions in the following table:
+
++----------------+------------------+------------------+--------------------+------------+
+| f(x)           | Round to nearest | Round up (to +∞) | Round down (to -∞) | Round to 0 |
++----------------+------------------+------------------+--------------------+------------+
+|              **Exponentials and logarithms**                                           |
++----------------+------------------+------------------+--------------------+------------+
+| exp(x)         | exp_rn           | exp_ru           | exp_rd             | exp_rz     |
++----------------+------------------+------------------+--------------------+------------+
+| exp(x)-1       | expm1_rn         | expm1_ru         | expm1_rd           | expm1_rz   |
++----------------+------------------+------------------+--------------------+------------+
+| log(x)         | log_rn           | log_ru           | log_rd             | log_rz     |
++----------------+------------------+------------------+--------------------+------------+
+| log(1+x)       | log1p_rn         | log1p_ru         | log1p_rd           | log1p_rz   |
++----------------+------------------+------------------+--------------------+------------+
+| log(x)/log(2)  | log2_rn          | log2_ru          | log2_rd            | log2_rz    |
++----------------+------------------+------------------+--------------------+------------+
+| log(x)/log(10) | log10_rn         | log10_ru         | log10_rd           | log10_rz   |
++----------------+------------------+------------------+--------------------+------------+
+| sinh(x)        | sinh_rn          | sinh_ru          | sinh_rd            | sinh_rz    |
++----------------+------------------+------------------+--------------------+------------+
+| cosh(x)        | cosh_rn          | cosh_ru          | cosh_rd            | cosh_rz    |
++----------------+------------------+------------------+--------------------+------------+
+|              **Trigonometry**                                                          |
++----------------+------------------+------------------+--------------------+------------+
+| sin(x)         | sin_rn           | sin_ru           | sin_rd             | sin_rz     |
++----------------+------------------+------------------+--------------------+------------+
+| cos(x)         | cos_rn           | cos_ru           | cos_rd             | cos_rz     |
++----------------+------------------+------------------+--------------------+------------+
+| tan(x)         | tan_rn           | tan_ru           | tan_rd             | tan_rz     |
++----------------+------------------+------------------+--------------------+------------+
+| asin(x)        | asin_rn          | asin_ru          | asin_rd            | asin_rz    |
++----------------+------------------+------------------+--------------------+------------+
+| acos(x)        | acos_rn          | acos_ru          | acos_rd            | acos_rz    |
++----------------+------------------+------------------+--------------------+------------+
+| atan(x)        | atan_rn          | atan_ru          | atan_rd            | atan_rz    |
++----------------+------------------+------------------+--------------------+------------+
+|              **Trigonometry in multiples of π**                                        |
++----------------+------------------+------------------+--------------------+------------+
+| sin(π * x)     | sinpi_rn         | sinpi_ru         | sinpi_rd           | sinpi_rz   |
++----------------+------------------+------------------+--------------------+------------+
+| cos(π * x)     | cospi_rn         | cospi_ru         | cospi_rd           | cospi_rz   |
++----------------+------------------+------------------+--------------------+------------+
+| tan(π * x)     | tanpi_rn         | tanpi_ru         | tanpi_rd           | tanpi_rz   |
++----------------+------------------+------------------+--------------------+------------+
+| asin(x)/π      | asinpi_rn        | asinpi_ru        | asinpi_rd          | asinpi_rz  |
++----------------+------------------+------------------+--------------------+------------+
+| acos(x)/π      | acospi_rn        | acospi_ru        | acospi_rd          | acospi_rz  |
++----------------+------------------+------------------+--------------------+------------+
+| atan(x)/π      | atanpi_rn        | atanpi_ru        | atanpi_rd          | atanpi_rz  |
++----------------+------------------+------------------+--------------------+------------+
+
+
+* The function ``pow`` in CRlibm is not exported.
+
+
 License
 -------
 
@@ -52,6 +135,19 @@ David Defour, Catherine Daramy, Florent de Dinechin,
 Matthieu Gallet, Nicolas Gast, Christoph Lauter, Jean-Michel Muller.
 
 Python bindings by Stefano Taschini.
+
+History
+-------
+
+These Python bindings are a spin-off of `PyInterval
+<https://github.com/taschini/pyinterval>`_, a project for interval
+arithmetic in Python.
+
+1.0.0 (2015-10-27)
+^^^^^^^^^^^^^^^^^^
+
+* First release on PyPI.
+
 
 Links
 -----
