@@ -1,0 +1,17 @@
+*.py[cod]
+*.so
+*.[ao]
+/dist
+/build
+/crlibm.egg-info/
+.tox
+
+# Files generated when building crlibm
+/crlibm/**/Makefile
+/crlibm/**/.deps
+/crlibm/tests/crlibm_*
+/crlibm/tests/check_*
+/crlibm/config.log
+/crlibm/config.status
+/crlibm/crlibm_config.h
+/crlibm/stamp-h1
