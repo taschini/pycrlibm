@@ -20,3 +20,15 @@ clean:
 
 crlibm/crlibm_config.h: 
 	(cd crlibm; CFLAGS='-fPIC' ./configure --prefix=$(abspath build/crlibm))
+
+docs: build/DESCRIPTION.html build/README.html
+
+build/DESCRIPTION.html: README.rst setup.py
+	./setup.py --long-description | rst2html.py > $@
+
+build/README.html: README.rst
+	rest2html < $< > $@
+
+test:
+	./setup.py test -q
+
