@@ -60,7 +60,6 @@ def readme():
 classifiers = [
     'Development Status :: 5 - Production/Stable',
     'License :: OSI Approved :: GNU Lesser General Public License v2 or later (LGPLv2+)',
-    'License :: OSI Approved :: BSD License',
     'Operating System :: MacOS :: MacOS X',
     'Operating System :: Microsoft :: Windows',
     'Operating System :: POSIX :: Linux',
