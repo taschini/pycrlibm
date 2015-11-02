@@ -43,9 +43,13 @@ At the command line::
 
     $ pip install crlibm
 
-Or, alternatively::
-
-    $ easy_install crlibm
+On Microsoft Windows ``pip`` will try first to download a binary
+archive in *wheel* format, and if no such a *wheel* can be found for
+your Python version, ``pip`` will try to compile the library.  In
+order to do so, it is strongly recommended to have `MinGW-w64
+<http://mingw-w64.org>`_ installed under `MSYS2
+<https://msys2.github.io>`_, for instance by following the
+instructions in `<http://stackoverflow.com/a/30071634>`_.
 
 
 Usage
