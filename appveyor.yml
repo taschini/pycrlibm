@@ -43,4 +43,4 @@ artifacts:
   - path: dist\*
 
 deploy_script:
-  - "%WITH_COMPILER% %PYTHON%/python setup.py sdist bdist_wheel upload"
+  - "IF $%APPVEYOR_REPO_TAG%$==$true$ ( %PYTHON%/python setup.py bdist_wheel upload ) else ( echo NO )"
