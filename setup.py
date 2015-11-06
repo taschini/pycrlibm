@@ -120,7 +120,7 @@ metadata = dict(
 
 data = dict(
     name             = 'crlibm',
-    version          = '1.0.0',
+    version          = '1.0.1rc1',
     install_requires = [],
     test_suite       = 'tests',
     tests_require    = [],

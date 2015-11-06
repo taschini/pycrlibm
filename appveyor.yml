@@ -7,7 +7,7 @@ environment:
   PYPI_PASSWORD:
     secure: BU5xMJuvSUrPzWloSZbBALK5fEsbZI6i2DzsKtAzd94=
   PYPI_USERNAME: taschini
-  PYPI_REPOSITORY': "https://testpypi.python.org/pypi"
+  PYPI_REPOSITORY': "https://pypi.python.org/pypi"
 
   matrix:
 
