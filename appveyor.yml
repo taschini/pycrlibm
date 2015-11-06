@@ -4,6 +4,11 @@ branches:
 
 environment:
 
+  PYPI_PASSWORD:
+    secure: BU5xMJuvSUrPzWloSZbBALK5fEsbZI6i2DzsKtAzd94=
+  PYPI_USERNAME: taschini
+  PYPI_REPOSITORY': "https://testpypi.python.org/pypi"
+
   matrix:
 
     # Pre-installed Python versions, which Appveyor may upgrade to
@@ -37,5 +42,5 @@ after_test:
 artifacts:
   - path: dist\*
 
-#on_success:
-#  - TODO: upload the content of dist/*.whl to a public wheelhouse
+deploy_script:
+  - "%WITH_COMPILER% %PYTHON%/python setup.py sdist bdist_wheel upload"

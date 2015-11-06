@@ -10,6 +10,7 @@ except ImportError:
 from distutils.core import Extension
 from distutils.command.sdist import sdist
 from distutils.command.build_ext import build_ext
+from distutils.command.upload import upload
 from distutils import cygwinccompiler
 
 class Msys2CCompiler (cygwinccompiler.CygwinCCompiler):
@@ -74,6 +75,16 @@ class custom_build_ext(build_ext):
             sub.call(cli)
             return build_ext.build_extension(self, ext)
 
+class custom_upload(upload):
+    """Upload binary package to PyPI with credentials obtained from environment overriding pypirc."""
+
+    def finalize_options(self):
+        import os
+        upload.finalize_options(self)
+        overrides = ((k[5:].lower(), v) for k, v in os.environ.iteritems() if k.startswith('PYPI_'))
+        for k, v in overrides:
+            setattr(self, k, v)
+
 @apply
 def readme():
     with open('README.rst') as readme_file:
@@ -113,7 +124,7 @@ data = dict(
     install_requires = [],
     test_suite       = 'tests',
     tests_require    = [],
-    cmdclass         = {'sdist': sdist, 'build_ext': custom_build_ext},
+    cmdclass         = {'sdist': sdist, 'build_ext': custom_build_ext, 'upload': custom_upload},
     ext_modules      = [
         Extension(
             'crlibm',
