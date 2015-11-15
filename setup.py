@@ -114,7 +114,7 @@ metadata = dict(
     license          = "LGPLv2+",
     long_description = readme,
     platforms        = '',
-    url              = 'https://github.com/taschini/crlibm',
+    url              = 'https://github.com/taschini/pycrlibm',
 )
 
 
