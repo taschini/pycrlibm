@@ -16,7 +16,7 @@ msys2:
 	(cd crlibm; exec 0</dev/null; CFLAGS='-DCRLIBM_TYPEOS_BSD' ./configure --prefix=$(abspath build/crlibm) --enable-sse2)
 	exec 0</dev/null; $(MAKE) crlibm-notest
 	gendef $(PYTHON_DLL)
-	dlltool --dllname $(PYTHON_DLL) --def $(PYTHON_NAME).def --output-lib crlibm/lib/$(PYTHON_NAME).a
+	dlltool --dllname $(PYTHON_DLL) --def $(PYTHON_NAME).def --output-lib build/crlibm/lib/$(PYTHON_NAME).a
 
 clean:
 	-rm -rf build/ dist/ crlibm.egg-info/ crlibm.so
