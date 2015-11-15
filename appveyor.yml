@@ -7,7 +7,7 @@ environment:
   PYPI_PASSWORD:
     secure: BU5xMJuvSUrPzWloSZbBALK5fEsbZI6i2DzsKtAzd94=
   PYPI_USERNAME: taschini
-  PYPI_REPOSITORY': "https://testpypi.python.org/pypi"
+  PYPI_REPOSITORY': "https://pypi.python.org/pypi"
 
   matrix:
 
@@ -27,6 +27,7 @@ environment:
 
 init:
   - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
+  - "del C:\\Python27\\libs\\libpython27.a"
 
 install:
   - "powershell appveyor\\install.ps1"
