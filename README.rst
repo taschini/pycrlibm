@@ -152,6 +152,12 @@ arithmetic in Python.
 
 * First release on PyPI.
 
+1.0.1 (2015-11-15)
+^^^^^^^^^^^^^^^^^^
+
+* Improvements to the build process on MS Windows;
+* Automatic upload of release files to Pypi using Appveyor.
+
 
 Links
 -----
