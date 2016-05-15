@@ -1,6 +1,6 @@
-/* Copyright (c) 2008, Stefano Taschini <taschini@ieee.org> */
-/* All rights reserved.                                     */
-/* See LICENSE for details.                                 */
+/* Copyright (c) 2008, 2016, Stefano Taschini <taschini@ieee.org> */
+/* All rights reserved.                                           */
+/* See LICENSE for details.                                       */
 
 #include <Python.h>
 
@@ -107,9 +107,34 @@ static PyMethodDef _crlibm_methods[] = {
   {NULL, NULL, 0, NULL}        /* Sentinel */
 };
 
+#if PY_MAJOR_VERSION >= 3
+
+static struct PyModuleDef moduledef = {
+  PyModuleDef_HEAD_INIT,
+  "crlibm",            /* m_name */
+  _crlibm_docs,        /* m_doc */
+  -1,                  /* m_size */
+  _crlibm_methods,     /* m_methods */
+  NULL,                /* m_reload */
+  NULL,                /* m_traverse */
+  NULL,                /* m_clear */
+  NULL,                /* m_free */
+};
+
+PyMODINIT_FUNC
+PyInit_crlibm(void)
+{
+  crlibm_init();
+  return PyModule_Create(&moduledef);
+}
+
+#else
+
 PyMODINIT_FUNC
 initcrlibm(void)
 {
   crlibm_init();
   (void) Py_InitModule3("crlibm", _crlibm_methods, _crlibm_docs);
 }
+
+#endif

@@ -38,6 +38,7 @@ line        : %(l)r
     def cases(self):
         """Iterate over the cases in the dataset."""
         import re, struct
+        from binascii import unhexlify
         comment_strip = re.compile('#.*')
         strip0x = re.compile('^0x')
         base_function = None
@@ -55,8 +56,8 @@ line        : %(l)r
                 try:
                     rm, in_hi, in_lo, out_hi, out_lo = parsed.split()
                     function = base_function + self.rounding_modes[rm]
-                    input,   = struct.unpack('>d',(fix( in_hi) + fix( in_lo)).decode('hex'))
-                    output,  = struct.unpack('>d',(fix(out_hi) + fix(out_lo)).decode('hex'))
+                    input,   = struct.unpack('>d',unhexlify(fix( in_hi) + fix( in_lo)))
+                    output,  = struct.unpack('>d',unhexlify(fix(out_hi) + fix(out_lo)))
                     yield function, input, output, context
                 except Exception:
                     self.logger.exception(context)

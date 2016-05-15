@@ -7,6 +7,13 @@ try:
 except ImportError:
     from distutils.core import setup
 
+try:
+    apply
+except NameError:
+    def apply(func):
+        return func()
+
+
 from distutils.core import Extension
 from distutils.command.sdist import sdist
 from distutils.command.build_ext import build_ext
@@ -87,8 +94,9 @@ class custom_upload(upload):
 
 @apply
 def readme():
-    with open('README.rst') as readme_file:
-        return readme_file.read().decode('utf8')
+    import io
+    with io.open('README.rst') as readme_file:
+        return readme_file.read()
 
 # A subset of http://pypi.python.org/pypi?%3Aaction=list_classifiers
 classifiers = [
@@ -101,6 +109,7 @@ classifiers = [
     'Programming Language :: Python',
     'Programming Language :: Python :: 2.6',
     'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: Implementation :: CPython',
     'Topic :: Scientific/Engineering :: Mathematics'
 ]
@@ -120,7 +129,7 @@ metadata = dict(
 
 data = dict(
     name             = 'crlibm',
-    version          = '1.0.1',
+    version          = '1.0.2.dev0',
     install_requires = [],
     test_suite       = 'tests',
     tests_require    = [],
