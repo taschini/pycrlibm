@@ -5,8 +5,8 @@ test_crlibm
 Tests for the `crlibm` module.
 
 """
-
 import unittest
+
 
 class TestData(object):
     """Class to load test datasets from the CRlibm library."""
@@ -19,7 +19,9 @@ class TestData(object):
 
     def open_file(self):
         from os import path
-        return open(path.abspath(path.join(path.dirname(__file__), '..', 'crlibm', 'tests', self.name + '.testdata')))
+        return open(path.join(
+            path.dirname(__file__), '..', 'crlibm',
+            'tests', self.name + '.testdata'))
 
     rounding_modes = {
         'N': '_rn',
@@ -37,13 +39,16 @@ line        : %(l)r
 
     def cases(self):
         """Iterate over the cases in the dataset."""
-        import re, struct
+        import re
+        from struct import unpack
         from binascii import unhexlify
         comment_strip = re.compile('#.*')
         strip0x = re.compile('^0x')
         base_function = None
+
         def fix(s):
             return format(strip0x.sub('', s)).zfill(8)
+
         with self.open_file() as f:
             for n, line in enumerate(f):
                 context = self.context_format % dict(f=f.name, n=n, l=line)
@@ -56,9 +61,9 @@ line        : %(l)r
                 try:
                     rm, in_hi, in_lo, out_hi, out_lo = parsed.split()
                     function = base_function + self.rounding_modes[rm]
-                    input,   = struct.unpack('>d',unhexlify(fix( in_hi) + fix( in_lo)))
-                    output,  = struct.unpack('>d',unhexlify(fix(out_hi) + fix(out_lo)))
-                    yield function, input, output, context
+                    inp, = unpack('>d', unhexlify(fix(in_hi) + fix(in_lo)))
+                    out, = unpack('>d', unhexlify(fix(out_hi) + fix(out_lo)))
+                    yield function, inp, out, context
                 except Exception:
                     self.logger.exception(context)
                     raise
@@ -80,12 +85,17 @@ class TestCrlibm(unittest.TestCase):
 
     def test_000_import(self):
         import crlibm
+        self.assertNotEqual(crlibm.__doc__, None)
 
     def test_001_namespace(self):
         import crlibm
         expected_rounding_modes = 'rn ru rd rz'.split()
-        expected_symbols = sorted((f + '_' + r) for f in self.expected_functions for r in expected_rounding_modes)
-        exported_symbols = sorted(x for x in dir(crlibm) if not x.startswith('_'))
+        expected_symbols = sorted(
+            (f + '_' + r)
+            for f in self.expected_functions
+            for r in expected_rounding_modes)
+        exported_symbols = sorted(
+            x for x in dir(crlibm) if not x.startswith('_'))
         assert exported_symbols == expected_symbols
         self.assertEqual(exported_symbols, expected_symbols)
 
