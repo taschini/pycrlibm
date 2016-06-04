@@ -1,5 +1,6 @@
 Makefile
 README.rst
+CHANGES.rst
 crlibm/AUTHORS
 crlibm/COPYING
 crlibm/COPYING.LIB

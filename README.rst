@@ -140,30 +140,11 @@ Matthieu Gallet, Nicolas Gast, Christoph Lauter, Jean-Michel Muller.
 
 Python bindings by Stefano Taschini.
 
-History
--------
-
-These Python bindings are a spin-off of `PyInterval
-<https://github.com/taschini/pyinterval>`_, a project for interval
-arithmetic in Python.
-
-1.0.0 (2015-10-27)
-^^^^^^^^^^^^^^^^^^
-
-* First release on PyPI.
-
-1.0.1 (2015-11-15)
-^^^^^^^^^^^^^^^^^^
-
-* Improvements to the build process on MS Windows;
-* Automatic upload of release files to Pypi using Appveyor.
-
-
 Links
 -----
 
 * Project home page: https://github.com/taschini/pycrlibm.
-* Documentation: https://pycrlibm.readthedocs.org.
+* Documentation: https://pycrlibm.readthedocs.io.
 * Entry in the Python Package Index: https://pypi.python.org/pypi/crlibm.
 * CRlibm home page: http://lipforge.ens-lyon.fr/www/crlibm.
 * LGPL v2.1: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
