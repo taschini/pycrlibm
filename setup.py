@@ -118,7 +118,7 @@ metadata = dict(
     test_suite       = 'tests',
     tests_require    = [],
     url              = 'https://github.com/taschini/pycrlibm',
-    version          = '1.0.2.dev0',
+    version          = '1.0.2',
     zip_safe         = False,
     ext_modules=[
         Extension(
