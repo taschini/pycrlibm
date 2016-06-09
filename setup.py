@@ -16,6 +16,36 @@ from distutils.command.upload import upload
 from distutils import cygwinccompiler
 
 
+def patch_get_msvcr():
+    # From http://stackoverflow.com/a/34427014
+    _get_msvcr = cygwinccompiler.get_msvcr
+
+    def get_msvcr():
+        try:
+            return _get_msvcr()
+        except ValueError:
+            import sys
+            msc_pos = sys.version.find('MSC v.')
+            if msc_pos != -1:
+                msc_ver = sys.version[msc_pos+6:msc_pos+10]
+                if msc_ver == '1700':
+                    # Visual Studio 2012 / Visual C++ 11.0
+                    return ['msvcr110']
+                elif msc_ver == '1800':
+                    # Visual Studio 2013 / Visual C++ 12.0
+                    return ['msvcr120']
+                elif msc_ver == '1900':
+                    # Visual Studio 2015 / Visual C++ 14.0
+                    # "msvcr140.dll no longer exists"
+                    # http://blogs.msdn.com/b/vcblog/archive/2014/06/03/visual-studio-14-ctp.aspx
+                    return ['vcruntime140']
+                else:
+                    raise
+    return get_msvcr
+
+cygwinccompiler.get_msvcr = patch_get_msvcr()
+
+
 class Msys2CCompiler(cygwinccompiler.CygwinCCompiler):
     "MSYS2/MinGW-w64 port of GNU C Compiler for MS Windows"
 
