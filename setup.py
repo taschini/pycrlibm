@@ -120,7 +120,7 @@ class custom_upload(upload):
     def finalize_options(self):
         import os
         upload.finalize_options(self)
-        overrides = ((k[5:].lower(), v) for k, v in os.environ.iteritems() if k.startswith('PYPI_'))
+        overrides = ((k[5:].lower(), v) for k, v in os.environ.items() if k.startswith('PYPI_'))
         for k, v in overrides:
             setattr(self, k, v)
 
