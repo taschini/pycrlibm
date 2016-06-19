@@ -27,6 +27,26 @@ environment:
       PYTHON_ARCH: "64"
       WITH_COMPILER: "PATH C:\\msys64\\MINGW64\\bin;C:\\msys64\\usr\\bin;%PATH% &"
 
+    - PYTHON: "C:\\Python33"
+      PYTHON_VERSION: "3.3.x"
+      PYTHON_ARCH: "32"
+      WITH_COMPILER: "PATH C:\\msys64\\MINGW32\\bin;C:\\msys64\\usr\\bin;%PATH% &"
+
+    - PYTHON: "C:\\Python33-x64"
+      PYTHON_VERSION: "3.3.x"
+      PYTHON_ARCH: "64"
+      WITH_COMPILER: "PATH C:\\msys64\\MINGW64\\bin;C:\\msys64\\usr\\bin;%PATH% &"
+
+    - PYTHON: "C:\\Python34"
+      PYTHON_VERSION: "3.4.x"
+      PYTHON_ARCH: "32"
+      WITH_COMPILER: "PATH C:\\msys64\\MINGW32\\bin;C:\\msys64\\usr\\bin;%PATH% &"
+
+    - PYTHON: "C:\\Python34-x64"
+      PYTHON_VERSION: "3.4.x"
+      PYTHON_ARCH: "64"
+      WITH_COMPILER: "PATH C:\\msys64\\MINGW64\\bin;C:\\msys64\\usr\\bin;%PATH% &"
+
     - PYTHON: "C:\\Python35"
       PYTHON_VERSION: "3.5.x"
       PYTHON_ARCH: "32"
